@@ -4,8 +4,21 @@ import { ResponseMessage } from '#response/ResponseMessage'
 import { EventListener } from '#listener/EventListener'
 import { SubscribeMessage } from '#subscribe/SubscribeMessage'
 import { Subscription } from '#subscription/Subscription'
+import { Message } from '#message/Message'
+
+export class Requestor {
+  async request(message: Message): Promise<Message> {
+    throw new Error('Not implemented')
+  }
+}
 
 export class Network {
+  static requestor: Requestor
+
+  static setRequestor(requestor: Requestor) {
+    Network.requestor = requestor
+  }
+
   constructor() {}
 
   createRequest<RequestPayload>(target: string, payload: RequestPayload) {
@@ -25,7 +38,7 @@ export class Network {
   }
 
   async sendRequest(message: RequestMessage): Promise<ResponseMessage> {
-    throw new Error('Not implemented')
+    return Network.requestor.request(message) as Promise<ResponseMessage>
   }
 
   async publishEvent(message: EventMessage): Promise<boolean> {
@@ -40,5 +53,3 @@ export class Network {
     throw new Error('Not implemented')
   }
 }
-
-

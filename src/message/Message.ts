@@ -73,6 +73,10 @@ export class Message<HeadersType = any, PayloadType = any> {
     return this._timestamp
   }
 
+  get remainTime() {
+    return Math.abs(timeElapsedFrom(this._timestamp) - this._ttl)
+  }
+
   /*****************************************************************************************/
   public setID(id: ID) {
     this._id = id

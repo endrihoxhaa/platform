@@ -1,6 +1,6 @@
 {
   "name": "platform",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,5 +14,8 @@
     "version:minor": "bun run scripts/script.version.ts -t minor",
     "version:patch": "bun run scripts/script.version.ts -t patch",
     "release": "bun run version && bun run build  && bun run scripts/script.release.ts"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
   }
 }

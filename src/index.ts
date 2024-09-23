@@ -1,3 +1,6 @@
+import 'reflect-metadata'
+
+
 export * from '#id/ID'
 export * from '#types/Types'
 

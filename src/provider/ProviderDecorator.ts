@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import { Provider, ProviderClass } from './Provider'
 
 const PROVIDER_KEY_TOKEN = 'PROVIDER:TOKEN'

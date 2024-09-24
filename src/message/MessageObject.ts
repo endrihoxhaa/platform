@@ -1,5 +1,8 @@
 import { MessageType } from './MessageType'
 
+//                     server_id | route_id
+export type URI = `${string}|${string}`
+
 export type MessageProto = string
 
 export type MessageObject<HeadersType = any, PayloadType = any> = {
@@ -7,8 +10,8 @@ export type MessageObject<HeadersType = any, PayloadType = any> = {
   ref: string
   ttl: number
   type: MessageType
-  source: string
-  target: string
+  source: URI
+  target: URI
   headers: HeadersType
   payload: PayloadType
   timestamp: number

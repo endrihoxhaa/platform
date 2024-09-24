@@ -1,7 +1,7 @@
 import { createID, ID } from '#id/ID'
 import { timeElapsedFrom } from '#time/Time'
 import { MessageType } from './MessageType'
-import { MessageObject } from './MessageObject'
+import { MessageObject, URI } from './MessageObject'
 import { MessageParameters } from './MessageParameters'
 
 export class Message<HeadersType = any, PayloadType = any> {
@@ -9,8 +9,8 @@ export class Message<HeadersType = any, PayloadType = any> {
   private _ref: ID
   private _ttl: number
   private _type: MessageType
-  private _source: string
-  private _target: string
+  private _source: URI
+  private _target: URI
   private _headers: HeadersType
   private _payload: PayloadType
   private _timestamp: number
@@ -30,8 +30,8 @@ export class Message<HeadersType = any, PayloadType = any> {
     this._ref = ref ?? ''
     this._ttl = ttl ?? 10000
     this._type = type ?? MessageType.ERROR
-    this._source = source ?? ''
-    this._target = target ?? ''
+    this._source = source ?? '|'
+    this._target = target ?? '|'
     this._headers = headers ?? Object.create({})
     this._payload = payload ?? Object.create({})
     this._timestamp = timestamp ?? new Date().getTime()
@@ -75,6 +75,22 @@ export class Message<HeadersType = any, PayloadType = any> {
 
   get remainTime() {
     return Math.abs(timeElapsedFrom(this._timestamp) - this._ttl)
+  }
+
+  get targetServerID() {
+    return this._target.split('|')[0]
+  }
+
+  get targetRouteID() {
+    return this._target.split('|')[1]
+  }
+
+  get sourceServerID() {
+    return this._source.split('|')[0]
+  }
+
+  get sourceRouteID() {
+    return this._source.split('|')[1]
   }
 
   /*****************************************************************************************/

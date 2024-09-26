@@ -9,6 +9,7 @@ export class Message<HeadersType = any, PayloadType = any> {
   private _ref: ID
   private _ttl: number
   private _type: MessageType
+  private _code: string
   private _source: URI
   private _target: URI
   private _headers: HeadersType
@@ -19,6 +20,7 @@ export class Message<HeadersType = any, PayloadType = any> {
     id,
     ref,
     ttl,
+    code,
     type,
     source,
     target,
@@ -30,6 +32,7 @@ export class Message<HeadersType = any, PayloadType = any> {
     this._ref = ref ?? ''
     this._ttl = ttl ?? 10000
     this._type = type ?? MessageType.ERROR
+    this._code = code ?? ''
     this._source = source ?? '|'
     this._target = target ?? '|'
     this._headers = headers ?? Object.create({})
@@ -51,6 +54,10 @@ export class Message<HeadersType = any, PayloadType = any> {
 
   get type() {
     return this._type
+  }
+
+  get code() {
+    return this._code
   }
 
   get source() {
@@ -110,6 +117,10 @@ export class Message<HeadersType = any, PayloadType = any> {
     this._type = type
   }
 
+  public setCode(code: Message['code']) {
+    this._code = code
+  }
+
   public setSource(source: Message['source']) {
     this._source = source
   }
@@ -118,11 +129,11 @@ export class Message<HeadersType = any, PayloadType = any> {
     this._target = target
   }
 
-  public setHeaders(headers: Message['headers']) {
+  public setHeaders(headers: HeadersType) {
     this._headers = headers
   }
 
-  public setPayload(payload: Message['payload']) {
+  public setPayload(payload: PayloadType) {
     this._payload = payload
   }
 
@@ -219,6 +230,7 @@ export class Message<HeadersType = any, PayloadType = any> {
       ref: this._ref,
       ttl: this._ttl,
       type: this._type,
+      code: this._code,
       source: this._source,
       target: this._target,
       headers: this._headers,

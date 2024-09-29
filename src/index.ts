@@ -17,6 +17,6 @@ export * from '#network/Network'
 export * from '#protocol/Protocol'
 
 export * from '#logger/Logger'
+export * from '#logger/Log'
 export * from '#logger/LoggerTransport'
 export * from '#logger/transports/ConsoleTransport'
-export * from '#logger/transports/FileTransport'

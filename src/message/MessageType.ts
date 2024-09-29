@@ -1,16 +1,18 @@
 /**
- * Message Types
+ * Message Types: Representing various communication flows within a messaging system.
  */
 export enum MessageType {
-  REQUEST = 'REQUEST',
-  RESPONSE = 'RESPONSE',
+  // Request-response cycle messages
+  REQUEST = 'REQUEST',      // Client-initiated request to the server.
+  RESPONSE = 'RESPONSE',    // Server's response to a client request.
 
-  SUBSCRIBE = 'SUBSCRIBE',
-  UNSUBSCRIBE = 'UNSUBSCRIBE',
+  // Subscription messages (for event-driven or WebSocket connections)
+  SUBSCRIBE = 'SUBSCRIBE',  // Client subscribes to a specific event or data stream.
+  UNSUBSCRIBE = 'UNSUBSCRIBE', // Client unsubscribes from a specific event or data stream.
 
-  EVENT = 'EVENT',
+  // Event-driven messages
+  EVENT = 'EVENT',          // Server-sent events, such as notifications or data updates.
 
-  ERROR = 'ERROR',
-
-  HEARTBEAT = 'HEARTBEAT',
+  // Error messages
+  ERROR = 'ERROR',          // Error response to signify an issue with the request or execution.
 }
